@@ -10,14 +10,13 @@ const show = ref(0);
   <div>
     <nav class="border-b flex gap-8 tabs">
       <a :class="show === 0 ? 'active' : ''" @click.prevent="show = 0">{{ $t('messages.shop.productDescription') }}</a>
-      <a :class="show === 1 ? 'active' : ''" @click.prevent="show = 1">{{ $t('messages.shop.reviews') }} ({{ product.reviewCount }})</a>
+      <a :class="show === 1 ? 'active' : ''" @click.prevent="show = 1">Document</a>
     </nav>
     <div class="tab-contents">
       <div v-if="show === 0" class="font-light mt-8 prose" v-html="product.description"></div>
       <div v-if="show === 1">
         <div class="flex flex-wrap gap-32 items-start">
           <div class="flex max-w-sm gap-4 prose">
-            <ReviewsScore :reviews="product.reviews" :productId="product.databaseId" />
           </div>
           <div class="divide-y flex-1">
             <div v-for="review in product.reviews.edges" :key="review.id" class="my-2 py-8">
