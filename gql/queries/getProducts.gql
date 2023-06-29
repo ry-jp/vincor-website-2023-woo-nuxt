@@ -4,7 +4,7 @@
 query getProducts(
   $after: String
   $slug: [String]
-  $first: Int = 100
+  $first: Int = 500
   $orderby: [ProductsOrderbyInput] = { field: DATE, order: DESC }
 ) {
   products(
