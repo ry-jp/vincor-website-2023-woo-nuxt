@@ -27,7 +27,7 @@ const globalProductAttributes = runtimeConfig?.public?.GLOBAL_PRODUCT_ATTRIBUTES
           :hide-empty="attribute.hideEmpty" />
       </div>
       <!-- <OnSaleFilter /> -->
-      <StarRatingFilter />
+
       <ResetFiltersButton />
     </div>
   </aside>
@@ -108,7 +108,7 @@ const globalProductAttributes = runtimeConfig?.public?.GLOBAL_PRODUCT_ATTRIBUTES
 
 #filters input[type='checkbox']:checked,
 #filters input[type='radio']:checked {
-  @apply bg-primary border-0;
+  @apply bg-primary-dark border-0;
 }
 
 #filters input[type='checkbox']:checked:after {

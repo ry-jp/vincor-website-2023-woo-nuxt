@@ -54,10 +54,9 @@ const colorVariableImage = computed(() => {
       :loading="index <= 1 ? 'eager' : 'lazy'"
       format="webp" />
 
-    <div class="p-2">
-      <StarRating :rating="node.averageRating" :count="node.reviewCount" />
-      <h2 class="mb-2 font-light leading-tight">{{ node.name }}</h2>
-      <ProductPrice class="text-sm" :sale-price="node.salePrice" :regular-price="node.regularPrice" />
+    <div class="p-2 pt-4">
+      <h2 class="mb-2 font-base text-base leading-tight">{{ node.name }}</h2>
+      <ProductPrice class=" text-lg text-blue-950" :sale-price="node.salePrice" :regular-price="node.regularPrice" />
     </div>
   </NuxtLink>
 </template>
