@@ -58,11 +58,14 @@ const updateSelectedVariations = (variations: Variation[]) => {
     }
   });
 
+
+
   activeVariation.value = getActiveVariation[0];
   selectProductInput.value.variationId = activeVariation.value?.databaseId || null;
   selectProductInput.value.variation = activeVariation.value ? attrValues.value : null;
   variation.value = variations;
 };
+
 </script>
 
 <template>
@@ -94,7 +97,6 @@ const updateSelectedVariations = (variations: Variation[]) => {
         <div class="flex justify-between mb-4">
           <div class="flex-1">
             <h1 class="mb-2 text-2xl font-sesmibold">{{ type.name }}</h1>
-            <StarRating :rating="product.averageRating || 0" :count="product.reviewCount || 0" />
           </div>
           <ProductPrice class="text-xl" :sale-price="type.salePrice" :regular-price="type.regularPrice" />
         </div>
@@ -115,6 +117,22 @@ const updateSelectedVariations = (variations: Variation[]) => {
 
         <hr />
 
+        <div class="pt-6 flex flex-col" v-if="product.addons">
+              <p class="flex flex-col gap-4 pb-4" v-for="addons in product.addons" :key="addons.slug"
+                >{{ addons.name }}
+              <select class=" font-semibold text-base" v-model="selected" v-if="product.addons">
+                <option class="font-semibold text-base" v-for="options in addons.options" :key="addons.slug">
+                  {{ options.label }} <p v-if="options.price" >(+${{ options.price }})</p>
+
+                </option>
+              </select>
+            </p>
+            <p class="font-semibold">Total Price: <ProductPrice class="text-xl text-red-600" :sale-price="type.salePrice" :regular-price="type.regularPrice" /></p>
+            </div>
+
+
+
+
         <form @submit.prevent="addToCart(selectProductInput)">
           <AttributeSelections
             v-if="product.type == 'VARIABLE' && product.attributes && product.variations"
@@ -123,6 +141,12 @@ const updateSelectedVariations = (variations: Variation[]) => {
             :variations="product.variations.nodes"
             @attrs-changed="updateSelectedVariations" />
           <div class="flex items-center gap-4 mt-12">
+            <span>{{ product.sku || 
+            
+            
+            
+            'N/A' }}</span>
+            
             <input
               v-model="quantity"
               type="number"
@@ -145,8 +169,6 @@ const updateSelectedVariations = (variations: Variation[]) => {
         </div>
         <hr />
         <div class="flex flex-wrap gap-4">
-          <WishlistButton :product="product" />
-          <ShareButton :product="product" />
         </div>
       </div>
     </div>

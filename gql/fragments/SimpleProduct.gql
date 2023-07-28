@@ -27,4 +27,25 @@ fragment SimpleProduct on SimpleProduct {
       sourceUrl
     }
   }
+  addons {
+    fieldName
+    name
+    price
+    priceType
+    required
+    ... on AddonMultipleChoice {
+      options {
+        label
+        price
+        priceType
+      }
+    }
+    ... on AddonCheckbox {
+      options {
+        label
+        price
+        priceType
+      }
+    }
+  }
 }
