@@ -4,12 +4,12 @@ const { toggleCart, cart } = useCart();
 
 <template>
   <div class="cursor-pointer relative" title="Cart" @click="toggleCart">
-    <Icon name="ion:cart-outline" size="20" class="mr-1 md:mr-0 stroke-2" />
+    <Icon name="ion:cart-outline" size="30" class="mr-1 md:mr-0 stroke-2" />
     <ClientOnly>
       <Transition name="popIn" mode="out-in">
         <span
           v-if="cart?.contents?.itemCount > 0"
-          class="bg-primary rounded-full text-white leading-none min-w-[16px] p-[3px] -top-1 -right-2 text-[10px] absolute inline-flex justify-center items-center"
+          class="bg-red-500 rounded-full text-white leading-none min-w-[25px] p-[3px] top-2 -right-2 text-[16px] absolute inline-flex justify-center items-center"
           >{{ cart?.contents?.itemCount }}</span
         >
       </Transition>
