@@ -32,7 +32,18 @@ fragment CartFragment on Cart {
           sku
           databaseId
           type
-          ...SimpleProduct
+          addons{
+            fieldName
+            name
+            price
+          }
+          ... on SimpleProduct{
+            addons{
+              fieldName
+              name
+              price
+            }
+          }
           ...VariableProduct
         }
       }
